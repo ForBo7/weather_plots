@@ -9,6 +9,14 @@ death_valley_weather = pd.read_csv(filename, parse_dates=True)
 death_valley_weather['DATE'] = pd.to_datetime(death_valley_weather['DATE'],
                                               format='%Y-%m-%d')
 
+print(death_valley_weather['TMAX'].head())
+
+# Convert TMAX from Fahrenheit to Celsius.
+death_valley_weather['TMAX'] = death_valley_weather['TMAX'].\
+    apply(lambda f: (f-32) * (5/9))
+
+print(death_valley_weather['TMAX'].head())
+
 # Set overall style to use and plot data.
 plt.style.use('seaborn')
 fig, ax = plt.subplots(figsize=(16, 10), dpi=227)
@@ -17,7 +25,7 @@ ax.plot(death_valley_weather['DATE'], death_valley_weather['TMAX'], c='red')
 # Set chart title and label axes.
 ax.set_title('Daily High Temperatures, Death Valley', fontsize=24)
 ax.set_xlabel('', fontsize=14)
-ax.set_ylabel('Temperature (F)', fontsize=14)
+ax.set_ylabel('Temperature (C)', fontsize=14)
 
 ax.tick_params(axis='both', labelsize=14)
 
