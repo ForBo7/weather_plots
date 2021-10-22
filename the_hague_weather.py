@@ -7,7 +7,7 @@ hague_weather = pd.read_csv(filename, parse_dates=True)
 district_weather = hague_weather.groupby('NAME')
 delft_weather = district_weather.get_group('DELFT, NL')
 
-# Plot chat.
+# Plot chart.
 fig = px.line(delft_weather, x='DATE', y='PRCP',
               title='Daily Precipitation, Delft, The Hague - NL, 2020',
               labels={'DATE': '', 'PRCP': 'Precipitation (cm)'},
